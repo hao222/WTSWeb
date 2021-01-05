@@ -12,5 +12,11 @@ export default {
 </script>
 
 <style lang="scss">
-
+  #app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center; /*使子项目水平居中*/
+    align-items: center; /*使子项目垂直居中*/
+  }
 </style>

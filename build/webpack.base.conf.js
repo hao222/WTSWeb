@@ -31,7 +31,8 @@ module.exports = {
       'STORE': resolve('src/store'),
       'VIEWS': resolve('src/views'),
       'API': resolve('src/api'),
-
+      'CPT':resolve('src/components'),
+      'IMAGES': resolve('src/assets/images'),
 
     }
   },

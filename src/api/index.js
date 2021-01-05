@@ -30,3 +30,41 @@ function dealUrl (url) {
 
   return base_url + url;
 }
+
+
+Axios.interceptors.request.use(
+  config => {
+    let token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = 'Bearer '+ token;
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
+
+
+// http response 拦截器
+Axios.interceptors.response.use(
+  response => {
+    console.log(response)
+    // 未登录或会话已过期
+    if ('401' === response.status) {
+      // 重定向到登录页
+      router.replace({
+        path: '/login',
+        query: {}
+      })
+    }
+    return response;
+  },
+  error => {
+    if (500 === error.response.status) {
+      // 服务端异常
+    }
+    return Promise.reject(error) // 返回接口返回的错误信息
+  }
+);
+
